@@ -1,0 +1,54 @@
+ID: ui5-right-click
+description: mta descriptor for ui5 right click
+_schema-version: "2.1"
+version: 1.0.0
+
+modules:
+  - name: ui5-standalone-approuter-beta
+    type: approuter.nodejs
+    path: ../approuter
+    parameters:
+      routes:
+        - route: https://${default-host}.${default-domain}
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: ui5-standalone-html5repo-runtime #needed for accessing the html5 app content
+  - name: html5-deployer
+    type: com.sap.application.content
+    path: ../.
+    requires:
+      - name: ui5-shared-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - ui5app.zip
+          name: ui5app
+          target-path: resources/
+  - name: ui5app
+    type: html5
+    path: ../html5module
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms: []
+
+resources:
+  - name: ui5-shared-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      service-key:
+        name: ui5-shared-repo-host-key
+  - name: ui5-standalone-html5repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime

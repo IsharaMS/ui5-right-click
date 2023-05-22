@@ -1,0 +1,19 @@
+<mvc:View controllerName="ui5app.controller.Main" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:f="sap.f" xmlns:custom="ui5app.controller">
+
+
+<VBox>
+		<Panel headerText="UI5 Custom Card Control">
+			<FlexBox
+				height="300px"
+				alignItems="Start"
+				justifyContent="Center">
+				<custom:card tabindex="-1" contextMenu="onContextMenu" title="Fieldglass" href="https://api.sap.com/products/SAPFieldglass" class="cardPadding"></custom:card>
+				<custom:card tabindex="-1" title="Concur" href="https://api.sap.com/products/SAPConcur" class="cardPadding"></custom:card>
+				<custom:card tabindex="-1" title="Ariba" href="https://api.sap.com/products/SAPAriba"  class="cardPadding"></custom:card>
+				<custom:card tabindex="-1" title="SuccessFactors" href="https://api.sap.com/products/SAPSuccessFactors"  class="cardPadding"></custom:card>
+			</FlexBox>
+		</Panel>
+	</VBox>
+
+</mvc:View>

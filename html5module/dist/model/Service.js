@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/model/odata/v2/ODataModel"],function(e){return{_ODataModel:{},readCustomers:function(e,a){return this._ODataModel.read("/Customers('ALFKI')",{success:e,error:a})}}});
